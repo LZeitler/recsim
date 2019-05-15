@@ -1,0 +1,102 @@
+* Simulation Software
+
+** Forward Simulations
+
+*** fwdpy11
+     - Python module
+     - forward-time population- and quantitative- genetic simulations
+     - get fitness, effect sizes, SFS, genotypes etc
+     - ploidy?
+       
+    https://molpopgen.github.io/fwdpy11/
+
+*** SLiM
+     - based on WF model
+     - lot of parameters implemented and can be easily manipulated
+     - no polyploidy possible
+     - output vcf, ms, tree (msprime)
+     - Eidos scripting lang 
+
+     http://benhaller.com/slim/SLiM_Manual.pdf
+
+*** SimuPOP
+     - python modules
+     - well documented
+     - allows polyploid gt
+     - based on WF model but pretty flexible
+       - mating type
+       - pop structure
+       - recombination (http://bopeng.github.io/simuPOP/refManual_ch3_sec5.html#Recombinator, https://github.com/BoPeng/simuPOP-examples/blob/master/published/simuGWAS/simuGWAS.py)
+       - mutation
+       - quantitative traits
+
+     http://simupop.sourceforge.net/Main/Download
+     http://bopeng.github.io/simuPOP/userGuide.html
+
+**** Recombination
+     - simuPOP does not assume any unit for loci positions
+     - can be basepair (bp), kilo-basepair (kb), mega base pair (mb) or genetic-map distance (centiMorgan)
+     - recombination rate between two adjacent markers can be specified as the *product between their physical distance and a recombination intensity*.
+     
+**** SAEGUS
+ https://github.com/maizeatlas/saegus
+ https://saegus-user-guide-docs.readthedocs.io/en/latest/additive_trait_parameterization.html
+
+ https://buildmedia.readthedocs.org/media/pdf/saegus-user-guide-docs/latest/saegus-user-guide-docs.pdf
+** Pedigree Simulations
+
+*** pSBVB
+     - simulates genotypes and phenotypes 
+     - sims based on real data, requires genotypes and pedigrees
+     - specifically for polyploids but allows diploids
+	- recombination matrix to specify probability of recombination between homeologs
+
+    https://lauzingaretti.github.io/pSBVB/
+
+*** PedigreeSim
+     - simulates simulated genetic marker data of individuals in pedigreed populations
+     - recombination by prodiving a map
+     - java
+
+     https://www.wur.nl/upload_mm/0/1/f/1bc9963d-509e-4fe0-880e-9d7b5ca8c820_PedigreeSim_manual.pdf
+
+** Other
+
+*** Haplosim
+    - Simulate haplotypes through meioses with mutations
+    - generate sequence-based haplotypes in polyploid
+    - output NGS reads formats
+    - R package
+
+    https://cran.r-project.org/web/packages/HaploSim/HaploSim.pdf
+    
+*** msprime 
+    - backward simulations 
+    - generate coalescent trees
+    - supply mutation/recombination
+    - python
+
+    https://msprime.readthedocs.io/en/stable/introduction.html
+
+* Infer Recombination rate and Population histories
+
+** ABLE
+   - blockwise SFS
+   - no phasing needed
+   - only diploids
+
+   https://github.com/champost/ABLE
+
+** Local PCA
+   - identify structural variants/inversions
+
+* Compare to real data
+** 300 data
+   - calculate Ne as in Waples et al 2016 using LD info
+     ldNe in strataG 
+     https://www.rdocumentation.org/packages/strataG/versions/2.0.2/topics/ldNe
+
+   - H_obs and H_exp
+
+   - LD (plink)
+

@@ -1,0 +1,7 @@
+guessstart <- function(data){
+    dt <- data
+    data.frame(gen=rep(-1,max(dt$rep)+1),
+               freq=rep(round(mean(filter(dt,gen==0)$freq),1),max(dt$rep)+1),
+               rep=c(0:max(dt$rep)+1))
+}
+
