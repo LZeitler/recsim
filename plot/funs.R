@@ -5,3 +5,4 @@ guessstart <- function(data){
                rep=c(0:max(dt$rep)+1))
 }
 
+dip.pops <- c('BEL','BIH','CRO','FOJ','GOR','HNE','HNI','KZL','MIE','PRE','RZA','SNO','SZI','TRD','VEL','VID')
