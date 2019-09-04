@@ -40,7 +40,7 @@ initialize() {
 	sim.addSubpop("p1", K);
 }
 
-// ouput all fixed variants of mutation types
+// ouput all segregating variants of mutation types
 1 late() {
   	catn('gen\tneutral\tdel\tben');
 	}
