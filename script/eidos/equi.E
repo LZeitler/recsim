@@ -15,7 +15,7 @@ initialize() {
 	// defined by a single parameter, whereas a gamma DFE requires two.
 	initializeMutationType("m1", 0.5, "f", 0.0);         // neutral
 	initializeMutationType("m2", 0.5, "g", -0.01, 0.1);  // deleterious: gamma distributed, selection coeff -.01, shape param .1
-	initializeMutationType("m3", 0.5, "e", 0.02);        // beneficial: exponential with sel coeff .02
+	initializeMutationType("m3", 0.5, "e", 0.02);        // beneficial: exponential with mean sel coeff .02 (rate=1/.02)
 
 	// The genomic element type here utilizes a mix of m1, m2, and m3.
 	initializeGenomicElementType("g1", c(m1,m2,m3), c(1.0,0.1,0.01)); // last vector: relative freq of these mut types occuring

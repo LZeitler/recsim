@@ -11,7 +11,7 @@ initialize() {
 	     defineConstant('nsd',0.2);
 	     defineConstant('nneutral',1);
 	     defineConstant('nqtl',0.001);
-	     defineConstant('n',1000);
+	     defineConstant('n',100);
 	     defineConstant('mapfile',"~/pro/recsim/slim/maps/150cm-3-4-easy-lovar.bed");
 
 	     initializeMutationRate(1e-7);
