@@ -53,7 +53,7 @@ getoutput <- function(file){
 
 setwd('../slim')
 
-df <- getoutput('out-equi.txt')
+df <- getoutput('out-qtl3-equi.txt')
 head(df)
 
 ggplot(df)+
@@ -109,12 +109,25 @@ ggplot(pisel)+
 ######################
 ## QTL with maps and adaptive walk
 
-walk <- fread('1709661916261/qtl2-phenotypes.txt',data.table=F)
+walk <- fread('1871742102694/qtl3-phenotypes.txt',data.table=F)
 
 ggplot(walk)+
     geom_line(aes(generation,mphenotype))
 
-eff <- fread('1709661916261/qtl2-effects.txt',data.table=F)
+walk3 <- fread('1847810905742/qtl3-phenotypes.txt',data.table=F)  # burn in with d b n with selection effect
+walk2 <- fread('1854323474551/qtl3-phenotypes.txt',data.table=F) # burn in with d b n w/o selection effect
+walk4 <- fread('1856494609495/qtl3-phenotypes.txt',data.table=F) # neutral burn in
+walk1 <- fread('1870891446584/qtl3-phenotypes.txt',data.table=F) # no burn in
+
+walkes <- rbind(data.frame(walk3, sim='with n/b/d standing var'),
+                data.frame(walk4, sim='with n standing var'),
+                data.frame(walk2, sim='with n/b/d standing var, no S'),
+                data.frame(walk1, sim='w/o standing var'))
+
+ggplot(walkes)+
+    geom_line(aes(generation,mphenotype,color=sim))
+
+eff <- fread('1750863695504/qtl2-effects.txt',data.table=F)
 
 ggplot(eff)+
     geom_histogram(aes(effect),binwidth = .05)
