@@ -8,8 +8,8 @@ initialize() {
 	     createDirectory(paste(getSeed()));
 	     setwd(paste(getSeed()));
 
-	     defineConstant('mdel',-0.001); // m2
-	     defineConstant('mben',0.02);  // m3
+	     defineConstant('mdel',-0.01); // m2
+	     defineConstant('mben',0.05);  // m3
 	     defineConstant('nneutral',1);
 	     defineConstant('ndel',0.1);
 	     defineConstant('nben',0.01);
