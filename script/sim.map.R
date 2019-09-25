@@ -87,6 +87,8 @@ qplot(t$wi,t$ccm)
 qplot(t$wi,t$rec)
 qplot(t$wi,t$cm)
 
+## chromsome lengths approx 150 cM
+
 set.seed(123)
 a <- easymap2(1.9e-7,1e-8,c(.4,.2,.4),sd=1e-8,sdcenr=1e-8,wi=1000)
 qplot(a$wi,a$ccm)
@@ -133,6 +135,33 @@ plot_grid(a,b,nrow=2)
 max(rmap$ccrate)                        # 150
 
 fwrite(select(rmap,pos,rate),'/home/leo/projects/recsim/slim/maps/150cm-4-6-lowvar.bed',quote=F,sep='\t',col.names=F)
+
+## chromsome lengths approx 75 cM
+
+set.seed(123)
+a <- easymap2(9e-8,1e-8,c(.4,.2,.4),sd=1e-8,sdcenr=1e-8,wi=1000)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/75cm-4-2-easy-lovar.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(123)
+a <- easymap2(1.18e-7,1e-8,c(.3,.4,.3),sd=1e-8,sdcenr=1e-8,wi=1000)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/75cm-3-4-easy-lovar.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1234)
+a <- easymap2(1.62e-7,1e-8,c(.2,.6,.2),sd=1e-8,sdcenr=3e-8,wi=1000)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/75cm-2-6-easy-lovar.bed',quote=F,sep='\t',col.names=F)
+
+
 
 ####################
 ## reverse

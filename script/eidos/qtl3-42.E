@@ -14,7 +14,7 @@ initialize() {
 	     defineConstant('ndel',0.1);
 	     defineConstant('nben',0.01);
 	     defineConstant('n',500);
-	     defineConstant('mapfile',"~/pro/recsim/slim/maps/150cm-4-2-easy-lovar.bed");
+	     defineConstant('mapfile',"~/pro/recsim/slim/maps/75cm-4-2-easy-lovar.bed");
 
 	     initializeMutationRate(1e-7);
 	     initializeMutationType("m1", 0.5, "f", 0.0);         // neutral
