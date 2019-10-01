@@ -162,6 +162,56 @@ qplot(a$wi,a$rec)
 fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/75cm-2-6-easy-lovar.bed',quote=F,sep='\t',col.names=F)
 
 
+## chromsome lengths approx 100 cM with more realistic values
+
+set.seed(123)
+a <- easymap2(1.12e-7,5e-8,c(.4,.2,.4),sd=2e-8,sdcenr=1e-8,wi=1000)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-4-2-easy-realv.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1224)
+a <- easymap2(1.33e-7,5e-8,c(.3,.4,.3),sd=2e-8,sdcenr=1e-8,wi=1000)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-3-4-easy-realv.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1236)
+a <- easymap2(1.75e-7,5e-8,c(.2,.6,.2),sd=2e-8,sdcenr=1e-8,wi=1000)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-2-6-easy-realv.bed',quote=F,sep='\t',col.names=F)
+
+
+## chromsome lengths approx 100 cM without any variation
+
+set.seed(123)
+a <- easymap2(1.12e-7,5e-8,c(.4,.2,.4))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-4-2-easy-novar.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1224)
+a <- easymap2(1.33e-7,5e-8,c(.3,.4,.3))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-3-4-easy-novar.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1236)
+a <- easymap2(1.75e-7,5e-8,c(.2,.6,.2))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-2-6-easy-novar.bed',quote=F,sep='\t',col.names=F)
 
 ####################
 ## reverse
