@@ -108,6 +108,7 @@ ggplot(pisel)+
 ######################
 ######################
 ## QTL with maps and adaptive walk
+setwd('~/pro/recsim/slim')
 
 walk <- fread('1871742102694/qtl3-phenotypes.txt',data.table=F)
 

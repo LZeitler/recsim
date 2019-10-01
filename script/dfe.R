@@ -26,21 +26,25 @@ qplot(dt$fitness,dt$frequency)
 myfun <- 'rgamma(10000,shape=.3,rate=.3/.01)*-1  # mean=-0.01'
 x <- eval(parse(text=myfun))
 ## x <- x/max(x)
-qplot(x,bins=20)+labs(x="Fitness",y='Frequency',title=myfun)+
+z <- qplot(x,bins=20)+labs(x="Fitness",y='Frequency',title=myfun)+
     geom_vline(aes(xintercept=mean(x)),color='blue')
+z
+
+saveplot(z,'~/pro/recsim/plots/param-gamma-del-3')
 
 
 myfun <- 'rnorm(1:10000,0,.2)'
 x <- eval(parse(text=myfun))
 ## x <- x/max(x)
-qplot(x,bins=20)+labs(x="Fitness",y='Frequency',title=myfun)+
+z <- qplot(x,bins=20)+labs(x="Fitness",y='Frequency',title=myfun)+
     geom_vline(aes(xintercept=mean(x)),color='blue')
+z
 
-
-myfun <- 'rexp(10000,1/0.1)  # mean=0.01'           # in eidos: rexp(10000,0.02), 0.02 is the mean, 1/0.02 is
-                                        # the rate
+myfun <- 'rexp(10000,1/0.05)  # mean=0.05'    # in eidos: rexp(10000,0.02), 0.02 is the mean, 1/0.02 is the rate
 x <- eval(parse(text=myfun))
 ## x <- x/max(x)
-qplot(x,bins=20)+labs(x="Fitness",y='Frequency',title=myfun)+
+z <- qplot(x,bins=20)+labs(x="Fitness",y='Frequency',title=myfun)+
     geom_vline(aes(xintercept=mean(x)),color='blue')
+z
 
+saveplot(z,'~/pro/recsim/plots/param-expo-ben-3')
