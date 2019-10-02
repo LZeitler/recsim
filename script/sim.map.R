@@ -213,6 +213,32 @@ qplot(a$wi,a$rec)
 
 fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-2-6-easy-novar.bed',quote=F,sep='\t',col.names=F)
 
+
+## chromsome lengths approx 100 cM without any variation and no recombination in center
+
+set.seed(123)
+a <- easymap2(1.25e-7,0,c(.4,.2,.4))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1224)
+a <- easymap2(1.67e-7,0,c(.3,.4,.3))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1236)
+a <- easymap2(2.5e-7,0,c(.2,.6,.2))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed',quote=F,sep='\t',col.names=F)
+
 ####################
 ## reverse
 sfun <- function(rec) 100*-0.5*log(1-2*rec*1000)
