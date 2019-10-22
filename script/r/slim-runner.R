@@ -2,12 +2,15 @@
 ## submits array jobs with desired parameters as job array
 ## run from login shell
 
+library(dplyr)
+library(data.table)
+
 mydate <- function(){
     paste0(format(Sys.time(),format="%H%M%S"),format(Sys.Date(),format="%d%m%y"))
 }
 
-wdir <- paste0('$SCRATCH/slim/',mydate())
-system2(paste0('mkdir -p ',wdir))
+wdir <- paste0('/cluster/scratch/zeitlerl/slim/',mydate())
+dir.create(wdir,recursive=T)
 setwd(wdir)
 
 slimpath <- "~/programs/SLiM_build/slim"
@@ -36,7 +39,7 @@ slimrunner <- function(seed, script, define, dryrun=F){
 }
 runner <- function(workdir,run){
     path <- paste0(workdir,'/',run)
-    mkdir(path)
+    dir.create(path)
     setwd(path)
 }
 
@@ -86,7 +89,7 @@ params <- data.frame(
 parspace <- paramsspace(params)
 parspace.out <- parspace %>% mutate(parcomb=1000+1:nrow(parspace))
 
-fwrite(parspace.out,paste0('parspace.txt')))
+fwrite(parspace.out,paste0('parspace.txt'))
 
 cat('Written parameter space table.\n')
 cat(wdir,'\n\n')
@@ -103,14 +106,14 @@ for (r in 1:nrow(parspace)){
     slimcmd <- slimrunner(run,scriptpath,defstr,T)
     runner(wdir,run)
     ## replicates are submitted as array jobs
-    system2(noquote(paste0('bsub -J "qtl4',run,'[1-',reps,
+    system(noquote(paste0('bsub -J "qtl4',run,'[1-',reps,
                            ']" -n 1 -W 12:00 -R "rusage[mem=4000]" -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "',
                            slimcmd,'"')))
     ## out <- c(out,slimcmd)
     ## }
 }
 
-cat('Submitted all jobs.\n')
+cat('slim-runner.R submitted all jobs.\n')
 
 ## accumulator <- integer(reps)
 ## for (iter in 1:reps){
