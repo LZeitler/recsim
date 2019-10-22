@@ -7,7 +7,7 @@ mydate <- function(){
 }
 
 wdir <- paste0('$SCRATCH/slim/',mydate())
-system2(paste0('mkdir -p ',wdir)
+system2(paste0('mkdir -p ',wdir))
 setwd(wdir)
 
 slimpath <- "~/programs/SLiM_build/slim"
@@ -86,7 +86,10 @@ params <- data.frame(
 parspace <- paramsspace(params)
 parspace.out <- parspace %>% mutate(parcomb=1000+1:nrow(parspace))
 
-fwrite(parspace.out,paste0('parspace-run.txt')))
+fwrite(parspace.out,paste0('parspace.txt')))
+
+cat('Written parameter space table.\n')
+cat(wdir,'\n\n')
 
 ## out <- as.vector(NULL)
 for (r in 1:nrow(parspace)){
@@ -106,6 +109,8 @@ for (r in 1:nrow(parspace)){
     ## out <- c(out,slimcmd)
     ## }
 }
+
+cat('Submitted all jobs.\n')
 
 ## accumulator <- integer(reps)
 ## for (iter in 1:reps){
