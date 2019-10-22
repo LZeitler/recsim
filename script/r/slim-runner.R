@@ -61,12 +61,12 @@ opt=c(10)
 sigma=c(5)                                     
 scale=dnorm(0.0, 0.0, sigma)
 mu=1e-7
-mapfile=c("~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed",
-          "~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed",
-          "~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed",
-          "~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed",
-          "~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed",
-          "~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed"
+mapfile=c("\'~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed\'", # notice double quotes
+          "\'~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed\'",
+          "\'~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed\'",
+          "\'~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed\'",
+          "\'~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed\'",
+          "\'~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed\'"
           )
 
 

@@ -74,10 +74,10 @@ initialize() {
    mean_phenotype = mean(phen);
 
 //// debug section
-   catn(paste(c('Gen ', sim.generation)));
-   cat('Phen '); print(phen);
-   cat('Fitn '); print(adj);
-   cat('Mean '); print(mean_phenotype);
+//   catn(paste(c('Gen ', sim.generation)));
+//   cat('Phen '); print(phen);
+//   cat('Fitn '); print(adj);
+//   cat('Mean '); print(mean_phenotype);
 
 
 // }
