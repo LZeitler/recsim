@@ -1,3 +1,7 @@
+## QTL4 submitter
+## submits array jobs with desired parameters as job array
+## run from login shell
+
 mydate <- function(){
     paste0(format(Sys.time(),format="%H%M%S"),format(Sys.Date(),format="%d%m%y"))
 }
@@ -84,7 +88,7 @@ parspace.out <- parspace %>% mutate(parcomb=1000+1:nrow(parspace))
 
 fwrite(parspace.out,paste0('parspace-run.txt')))
 
-## out <- as.vector(NULL)                  # run commands without replicates
+## out <- as.vector(NULL)
 for (r in 1:nrow(parspace)){
     comb <- parspace[r,]
     combn <- parspace.out$parcomb[r]
@@ -95,17 +99,13 @@ for (r in 1:nrow(parspace)){
     run <- combn
     slimcmd <- slimrunner(run,scriptpath,defstr,T)
     runner(wdir,run)
-    paste0('bsub -J "qtl4',run,'[1-',reps,
-           ']" -n 1 -W 12:00 -R "rusage[mem=4000]" -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "',
-           slimcmd,'"')
-
+    ## replicates are submitted as array jobs
+    system2(noquote(paste0('bsub -J "qtl4',run,'[1-',reps,
+                           ']" -n 1 -W 12:00 -R "rusage[mem=4000]" -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "',
+                           slimcmd,'"')))
     ## out <- c(out,slimcmd)
     ## }
 }
-
-runner(wdir,run)
-paste0('bsub -J "qtl4',run,'[1-',reps,']" -n 1 -W 12:00 -R "rusage[mem=4000]" -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "',slimcmd,'"')
-
 
 ## accumulator <- integer(reps)
 ## for (iter in 1:reps){
