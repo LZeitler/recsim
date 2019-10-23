@@ -61,17 +61,18 @@ opt=c(10)
 sigma=c(5)                                     
 scale=dnorm(0.0, 0.0, sigma)
 mu=1e-7
-mapfile=c("~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed", # notice double quotes
-          "~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed",
-          "~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed",
-          "~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed",
-          "~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed",
-          "~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed"
-          )
+mapfile=shQuote(c(
+    "~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed",
+    "~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed",
+    "~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed",
+    "~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed",
+    "~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed",
+    "~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed"),
+    'cmd')
 
 
 ################
-## run everthing
+## run everything
 params <- data.frame(
     mdel,
     mben,
@@ -97,6 +98,7 @@ cat(wdir,'\n\n')
 
 ## out <- as.vector(NULL)
 for (r in 1:nrow(parspace)){
+
     comb <- parspace[r,]
     combn <- parspace.out$parcomb[r]
     ## for (i in 1E5:(1E5+reps)){
@@ -105,6 +107,7 @@ for (r in 1:nrow(parspace)){
     ## run <- paste0(combn,i)
     run <- combn
     slimcmd <- slimrunner(run,scriptpath,defstr,T)
+
     runner(wdir,run)
     ## replicates are submitted as array jobs
     system(noquote(paste0('bsub -J "qtl4',run,'[1-',reps,
