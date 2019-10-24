@@ -6,6 +6,9 @@ $HOME/programs/SLiM_build/slim equi.E > out-equi.txt
 initialize() {
 
 	     // setSeed(12345);
+	     createDirectory(paste(parcomb));
+	     setwd(paste(parcomb));
+
 	     createDirectory(paste(getSeed()));
 	     setwd(paste(getSeed()));
 

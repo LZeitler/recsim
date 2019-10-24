@@ -23,7 +23,12 @@ mparams <- function(params){
 paramsspace <- function(params){
     mpar <- mparams(params)
     l <- sapply(mpar,function(x) eval(parse(text=x)))
-    data.frame(expand.grid(l, stringsAsFactors = F),select(params,-mpar), stringsAsFactors = F)
+    if (length(mpar)>1){
+        data.frame(expand.grid(l, stringsAsFactors = F),select(params,-mpar), stringsAsFactors = F)
+    } else {
+        params
+    }
+    
 }
 slimrunner <- function(seed, script, define, dryrun=F){
     if (dryrun){
@@ -61,15 +66,13 @@ opt=c(10)
 sigma=c(5)                                     
 scale=dnorm(0.0, 0.0, sigma)
 mu=1e-7
-mapfile=shQuote(c(
-    "~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed",
-    "~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed",
-    "~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed",
-    "~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed",
-    "~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed",
-    "~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed"),
-    'cmd')
-
+mapfile=c('\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed\u5c\u5c\u27')
+          
 
 ################
 ## run everything
@@ -84,14 +87,13 @@ params <- data.frame(
     sigma,
     scale,
     mu,
-    mapfile=shQuote(mapfile,'cmd'),
+    mapfile=mapfile,
     stringsAsFactors = F
 )
 
-parspace <- paramsspace(params)
-parspace.out <- parspace %>% mutate(parcomb=1000+1:nrow(parspace))
+parspace <- paramsspace(params) %>% mutate(parcomb=1000+1:nrow(parspace))
 
-fwrite(parspace.out,paste0('parspace.txt'))
+fwrite(parspace,paste0('parspace.txt'))
 
 cat('Written parameter space table.\n')
 cat(wdir,'\n\n')
@@ -107,16 +109,22 @@ for (r in 1:nrow(parspace)){
     ## run <- paste0(combn,i)
     run <- combn
     slimcmd <- slimrunner(run,scriptpath,defstr,T)
+    bsubcmd <- paste(c("bsub -J 'qtl4",run,"[1-",reps,
+                       "]' -n 1 -W 12:00 -R 'rusage[mem=4000]' -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "),
+                     collapse = '')
 
-    runner(wdir,run)
-    ## replicates are submitted as array jobs
-    system(noquote(paste0('bsub -J "qtl4',run,'[1-',reps,
-                           ']" -n 1 -W 12:00 -R "rusage[mem=4000]" -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "',
-                           slimcmd,'"')))
-    ## out <- c(out,slimcmd)
-    ## }
+    ## replicates are submitted as array jobs, bsub cmds are written to file and then submitted
+    bsubs <- paste0(bsubcmd,shQuote(slimcmd,'cmd')) # map without \
+
+    fwrite(list(bsubs),paste0(wdir,'/','bsubcmds.sh'),quote=F,col.names=F,sep='\t',append=T)
+    cat('slim-runner.R wrote commands to file bsubcmds.sh.\n')
+    
+    ## functional command looks like this
+    ## bsub -J 'qtl41001[1-1]' -n 1 -W 12:00 -R 'rusage[mem=4000]' -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "~/programs/SLiM_build/slim -d mdel=-0.001 -d mben=0.01 -d nneutral=1 -d ndel=0.1 -d nben=0.01 -d n=10 -d opt=10 -d sigma=5 -d scale=0.0797884560802865 -d mu=1e-07 -d mapfile=\\'~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed\\' -d parcomb=1001 ~/pro/recsim/script/eidos/qtl4-all.E"
+    
 }
 
+system('bash bsubcmds.sh')
 cat('slim-runner.R submitted all jobs.\n')
 
 ## accumulator <- integer(reps)
