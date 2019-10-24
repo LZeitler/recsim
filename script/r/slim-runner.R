@@ -91,7 +91,8 @@ params <- data.frame(
     stringsAsFactors = F
 )
 
-parspace <- paramsspace(params) %>% mutate(parcomb=1000+1:nrow(parspace))
+parspace <- paramsspace(params)
+parspace <- parspace %>% mutate(parcomb=1000+1:nrow(parspace))
 
 fwrite(parspace,paste0('parspace.txt'))
 
@@ -102,7 +103,7 @@ cat(wdir,'\n\n')
 for (r in 1:nrow(parspace)){
 
     comb <- parspace[r,]
-    combn <- parspace.out$parcomb[r]
+    combn <- parspace$parcomb[r]
     ## for (i in 1E5:(1E5+reps)){
     defstr <- paste(sapply(1:ncol(comb),function(x)
         paste0('-d ',names(comb)[x],'=',comb[,x])),collapse=' ')
