@@ -52,7 +52,7 @@ runner <- function(workdir,run){
 
 
 ## define replicates
-reps <- 1
+reps <- 1000
 
 
 ## define parameters
@@ -61,7 +61,7 @@ mben=c(0.01)
 nneutral=c(1)
 ndel=c(0.1)
 nben=c(0.01)                                                       
-n=c(10,100,1000)                                                        
+n=c(50,100,500,1000)                                                        
 opt=c(10)                                                          
 sigma=c(5)                                     
 scale=dnorm(0.0, 0.0, sigma)
