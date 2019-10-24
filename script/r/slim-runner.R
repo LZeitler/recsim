@@ -52,7 +52,7 @@ runner <- function(workdir,run){
 
 
 ## define replicates
-reps <- 1000
+reps <- 100
 
 
 ## define parameters
@@ -111,7 +111,7 @@ for (r in 1:nrow(parspace)){
     run <- combn
     slimcmd <- slimrunner(run,scriptpath,defstr,T)
     bsubcmd <- paste(c("bsub -J 'qtl4",run,"[1-",reps,
-                       "]' -n 1 -W 12:00 -R 'rusage[mem=4000]' -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "),
+                       "]%50' -n 1 -W 12:00 -R 'rusage[mem=4000]' -oo $HOME/logs/%J_%I.stdout -eo $HOME/logs/%J_%I.stderr "),
                      collapse = '')
 
     ## replicates are submitted as array jobs, bsub cmds are written to file and then submitted
