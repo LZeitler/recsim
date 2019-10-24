@@ -17,16 +17,16 @@ slimpath <- "~/programs/SLiM_build/slim"
 scriptpath <- "~/pro/recsim/script/eidos/qtl4-all.E"
 
 mparams <- function(params){
-    m <- sapply(1:ncol(params),function(x) nrow(unique(params[x])))
+    m <- lapply(params,function(x) length(unique(x)))
     names(params)[which(m>1)]
 }
 paramsspace <- function(params){
     mpar <- mparams(params)
-    l <- sapply(mpar,function(x) eval(parse(text=x)))
     if (length(mpar)>1){
+        l <- sapply(mpar,function(x) eval(parse(text=x)))
         data.frame(expand.grid(l, stringsAsFactors = F),select(params,-mpar), stringsAsFactors = F)
     } else {
-        params
+        data.frame(params,stringsAsFactors = F)
     }
     
 }
@@ -61,7 +61,7 @@ mben=c(0.01)
 nneutral=c(1)
 ndel=c(0.1)
 nben=c(0.01)                                                       
-n=c(50,100,500,1000)                                                        
+n=c(10,50,100,500,1000,5000,10000)
 opt=c(10)                                                          
 sigma=c(5)                                     
 scale=dnorm(0.0, 0.0, sigma)
@@ -76,22 +76,22 @@ mapfile=c('\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed\u5
 
 ################
 ## run everything
-params <- data.frame(
-    mdel,
-    mben,
-    nneutral,
-    ndel,
-    nben,
-    n,
-    opt,
-    sigma,
-    scale,
-    mu,
-    mapfile=mapfile,
-    stringsAsFactors = F
+params <- list(
+    mdel=mdel,
+    mben=mben,
+    nneutral=nneutral,
+    ndel=ndel,
+    nben=nben,
+    n=n,
+    opt=opt,
+    sigma=sigma,
+    scale=scale,
+    mu=mu,
+    mapfile=mapfile
 )
 
-parspace <- paramsspace(params)
+## parspace <- paramsspace(params)
+parspace <- expand.grid(params)
 parspace <- parspace %>% mutate(parcomb=1000+1:nrow(parspace))
 
 fwrite(parspace,paste0('parspace.txt'))
