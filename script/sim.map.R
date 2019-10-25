@@ -239,6 +239,63 @@ qplot(a$wi,a$rec)
 
 fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed',quote=F,sep='\t',col.names=F)
 
+## chromsome lengths approx 50 cM without any variation and no recombination in center
+
+set.seed(123)
+a <- easymap2(6.25e-8,0,c(.4,.2,.4))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-4-2-easy-novar-nocent.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1234)
+a <- easymap2(8.3e-8,0,c(.3,.4,.3))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-3-4-easy-novar-nocent.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1236)
+a <- easymap2(1.25e-7,0,c(.2,.6,.2))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-2-6-easy-novar-nocent.bed',quote=F,sep='\t',col.names=F)
+
+
+## Chromosome lengths 50 cM. 1 C/O per gen in diploids
+set.seed(123)
+a <- easymap2(6e-8,1e-8,c(.4,.2,.4))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-4-2-easy-novar.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1224)
+a <- easymap2(7.7e-8,1e-8,c(.3,.4,.3))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-3-4-easy-novar.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1236)
+a <- easymap2(1.1e-7,1e-8,c(.2,.6,.2))
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-2-6-easy-novar.bed',quote=F,sep='\t',col.names=F)
+
+
+
+
+
+
+
+
 ####################
 ## reverse
 sfun <- function(rec) 100*-0.5*log(1-2*rec*1000)
