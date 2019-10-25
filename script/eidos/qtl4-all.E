@@ -26,8 +26,8 @@ initialize() {
 	     // initializeMutationRate(1e-7);
 	     initializeMutationRate(mu);
 	     initializeMutationType("m1", 0.5, "f", 0.0);         // neutral
-	     initializeMutationType("m2", 0.1, "g", mdel, 0.3);	  // deleterious: gamma distributed, selection coeff -.01, shape param .1, h=0.2 mostly recessive
-	     initializeMutationType("m3", 0.5, "e", mben);        // beneficial: exponential with mean sel coeff .02 (rate=1/.02)
+	     initializeMutationType("m2", hdel, "g", mdel, 0.3);	  // deleterious: dom coeff, gamma dist, mean
+	     initializeMutationType("m3", hben, "e", mben);        // beneficial: dom coeff, exponential dist, mean
 	     m2.convertToSubstitution = F;
 	     m3.convertToSubstitution = F;
 	     initializeGenomicElementType("g1", c(m1, m2, m3), c(nneutral,ndel,nben));
