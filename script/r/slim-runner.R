@@ -61,17 +61,25 @@ mben=c(0.01)
 nneutral=c(1)
 ndel=c(0.1)
 nben=c(0.01)                                                       
-n=c(10,50,100,500,1000,5000,10000)
+n=c(50,100,500)
 opt=c(10)                                                          
 sigma=c(5)                                     
 scale=dnorm(0.0, 0.0, sigma)
 mu=1e-7
+hdel=c(0,.5,1)
+hben=c(.5)
 mapfile=c('\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed\u5c\u5c\u27',
           '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed\u5c\u5c\u27',
           '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-4-2-easy-novar-nocent.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-3-4-easy-novar-nocent.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-2-6-easy-novar-nocent.bed\u5c\u5c\u27',
           '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed\u5c\u5c\u27',
           '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed\u5c\u5c\u27')
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-4-2-easy-novar.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-3-4-easy-novar.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-2-6-easy-novar.bed\u5c\u5c\u27')
           
 
 ################
@@ -87,11 +95,14 @@ params <- list(
     sigma=sigma,
     scale=scale,
     mu=mu,
+    hdel=hdel,
+    hben=hben,
     mapfile=mapfile
 )
 
 ## parspace <- paramsspace(params)
 parspace <- expand.grid(params)
+cat('Calculated',nrow(parspace),'parameter combinations\n')
 parspace <- parspace %>% mutate(parcomb=1000+1:nrow(parspace))
 
 fwrite(parspace,paste0('parspace.txt'))
