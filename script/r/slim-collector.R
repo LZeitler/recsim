@@ -43,3 +43,7 @@ for (r in list.files()){
 }
 
 fwrite(big,paste0('~/pro/recsim/output/pheno-',run,'.txt'))
+cat('Wrote output.\n')
+
+system(paste0('cp ', rundir, '/parspace.txt ~/pro/recsim/output/parspace-', run. '.txt'))
+cat('Copied parameter space.\n')
