@@ -1,7 +1,14 @@
 library(dplyr)
 library(data.table)
 
-run <- '142017241019'
+args = commandArgs(trailingOnly=TRUE)
+if (length(args<1)){
+    run <- '142017241019'
+    cat('No run number supplied. Please add run number as argument to Rscript command. Defaulting to "142017241019".\n')
+} else {
+    run <- as.character(args)
+}
+
 rundir <- paste0('/cluster/scratch/zeitlerl/slim/',run)
 
 setwd(rundir)
