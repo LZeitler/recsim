@@ -100,21 +100,23 @@ initialize() {
 
       muts = sim.mutationsOfType(m3); // m3: ben, m2: del 
       benfreqs = sim.mutationFrequencies(NULL, muts);     
-      beneffects = muts.selectionCoeff;                   
-      writeFile('qtl3-effects.txt','freq\tbeneffect');    
+      beneffects = muts.selectionCoeff;
+      benpos = muts.position;
+      writeFile('qtl3-effects.txt','freq\tbeneffect\tbenpos');    
       for (i in 0:(length(beneffects)-1))                 
       {                                                   
-      line=paste(c(benfreqs[i],'\t',beneffects[i]));      
+      line=paste(c(benfreqs[i],'\t',beneffects[i],'\t',benpos[i]));      
       writeFile('qtl3-effects.txt', line, append=T);      
       }                                                   
                                                           
       muts = sim.mutationsOfType(m2); // m3: ben, m2: del 
       delfreqs = sim.mutationFrequencies(NULL, muts);     
-      deleffects = muts.selectionCoeff;                   
-      writeFile('qtl3-deleffects.txt','freq\tdeleffect'); 
+      deleffects = muts.selectionCoeff;
+      delpos = muts.position;
+      writeFile('qtl3-deleffects.txt','freq\tdeleffect\tdelpos'); 
       for (i in 0:(length(deleffects)-1))                 
       {                                                   
-      line=paste(c(delfreqs[i],'\t',deleffects[i]));      
+      line=paste(c(delfreqs[i],'\t',deleffects[i],'\t',delpos[i]));      
       writeFile('qtl3-deleffects.txt', line, append=T);   
       }                                                   
 
