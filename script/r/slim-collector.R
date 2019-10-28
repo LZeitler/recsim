@@ -1,12 +1,13 @@
 library(dplyr)
 library(data.table)
 
-args = commandArgs(trailingOnly=TRUE)
-if (length(args<1)){
-    run <- '142017241019'
-    cat('No run number supplied. Please add run number as argument to Rscript command. Defaulting to "142017241019".\n')
+args = commandArgs(trailingOnly=T)
+if (length(args)==0){
+    stop('No run number supplied. Please add run number as argument to Rscript command. No default\n
+    	  Usage: Rscript slim-collector.R --args <run number>\n\n')
 } else {
-    run <- as.character(args)
+    run <- as.character(args[2])
+    cat('Run: ',run,'\n\n')
 }
 
 rundir <- paste0('/cluster/scratch/zeitlerl/slim/',run)
@@ -45,5 +46,5 @@ for (r in list.files()){
 fwrite(big,paste0('~/pro/recsim/output/pheno-',run,'.txt'))
 cat('Wrote output.\n')
 
-system(paste0('cp ', rundir, '/parspace.txt ~/pro/recsim/output/parspace-', run. '.txt'))
+system(paste0('cp ', rundir, '/parspace.txt ~/pro/recsim/output/parspace-', run, '.txt'))
 cat('Copied parameter space.\n')
