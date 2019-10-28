@@ -44,7 +44,7 @@ setwd(odir)
 
 big <- data.frame()
 for (r in list.files()){
-    s <- lapply(list.files(r), function(x) data.frame(fread(paste0(r,'/',x),data.table=F),par=r,seed=regmatches(r,regexec("_(.*?).txt",r))[[1]][2]))
+    s <- lapply(list.files(r), function(x) data.frame(fread(paste0(r,'/',x),data.table=F),par=r,seed=regmatches(x,regexec("_(.*?).txt",x))[[1]][2]))
     big <- rbind(big,do.call(rbind,s))
 }
 
