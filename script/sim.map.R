@@ -289,6 +289,30 @@ qplot(a$wi,a$rec)
 
 fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-2-6-easy-novar.bed',quote=F,sep='\t',col.names=F)
 
+## short physical chromosomes but 50 cM long
+set.seed(1235)
+a <- easymap2(6.2e-7,1e-8,c(.4,.2,.4),wi=100,chromlen = 1e6)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-4-2-easy-016.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1224)
+a <- easymap2(8.2e-7,1e-8,c(.3,.4,.3),wi=100,chromlen = 1e6)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-3-4-easy-016.bed',quote=F,sep='\t',col.names=F)
+
+
+set.seed(1235)
+a <- easymap2(1.2e-6,1e-8,c(.2,.6,.2),wi=100,chromlen = 1e6)
+qplot(a$wi,a$ccm)
+qplot(a$wi,a$rec)
+
+fwrite(select(a,wi,rec),'/home/leo/projects/recsim/slim/maps/050cm-2-6-easy-016.bed',quote=F,sep='\t',col.names=F)
+
 
 
 

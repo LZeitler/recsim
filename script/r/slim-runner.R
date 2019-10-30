@@ -68,18 +68,9 @@ scale=dnorm(0.0, 0.0, sigma)
 mu=1e-7
 hdel=c(0,.5,1)
 hben=c(.5)
-mapfile=c('\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-4-2-easy-novar-nocent.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-3-4-easy-novar-nocent.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-2-6-easy-novar-nocent.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-4-2-easy-novar-nocent.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-3-4-easy-novar-nocent.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-2-6-easy-novar-nocent.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-4-2-easy-novar.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-3-4-easy-novar.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/100cm-2-6-easy-novar.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-4-2-easy-novar.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-3-4-easy-novar.bed\u5c\u5c\u27',
-          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-2-6-easy-novar.bed\u5c\u5c\u27')
+mapfile=c('\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-2-6-easy-016.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-3-4-easy-016.bed\u5c\u5c\u27',
+          '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-4-2-easy-016.bed\u5c\u5c\u27')
           
 
 ################
