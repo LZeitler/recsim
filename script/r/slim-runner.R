@@ -56,7 +56,7 @@ reps <- 100
 
 
 ## define parameters
-mdel=c(-0.001)
+mdel=c(-0.001,-0.002,-0.005)
 mben=c(0.01)
 nneutral=c(1)
 ndel=c(0.1)
@@ -66,7 +66,7 @@ opt=c(10)
 sigma=c(5)                                     
 scale=dnorm(0.0, 0.0, sigma)
 mu=1e-7
-hdel=c(0,.5,1)
+hdel=c(0,.5)
 hben=c(.5)
 mapfile=c('\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-2-6-easy-016.bed\u5c\u5c\u27',
           '\u5c\u5c\u27~/pro/recsim/slim/maps/050cm-3-4-easy-016.bed\u5c\u5c\u27',
