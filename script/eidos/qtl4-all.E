@@ -31,7 +31,7 @@ initialize() {
 	     m2.convertToSubstitution = F;
 	     m3.convertToSubstitution = F;
 	     initializeGenomicElementType("g1", c(m1, m2, m3), c(nneutral,ndel,nben));
-	     initializeGenomicElement(g1, 0, 1e7 - 1);
+	     initializeGenomicElement(g1, 0, 1e6 - 1);
 
 	     lines = readFile(mapfile);
 	     rates=NULL;
