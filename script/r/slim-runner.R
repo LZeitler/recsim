@@ -56,10 +56,10 @@ reps <- 100
 
 
 ## define parameters
-mdel=c(-0.001,-0.002,-0.005)
-mben=c(0.01)
+mdel=c(-0.005,-0.01,-0.05)
+mben=c(0.05)
 nneutral=c(1)
-ndel=c(0.1)
+ndel=c(0.05)
 nben=c(0.01)                                                       
 n=c(50,100,500)
 opt=c(10)                                                          
